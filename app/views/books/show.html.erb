@@ -1,0 +1,51 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+   <div class="col-md-3">
+  <%= render "share", user: @user, book: @books %>
+   </div>
+   
+   <div class="col-md-8 offset-md-1">
+<h1>Book detail</h1>
+
+<body>
+  
+  <table>
+    
+    <thead>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td>
+          <%=link_to user_path(@book.user.id) do %>
+          <%= image_tag @book.user.get_profile_image(100,100) %>
+          <% end %>
+          <%= link_to user_path(@book.user.id) do %>
+          <%= @book.user.name %>
+          <% end %></td>
+        <td><%= @book.title %></td>
+        <td><%= @book.body %></td>
+        <td>
+          <% if @book.user == current_user %>
+           <%= link_to "Edit", edit_book_path(@book.id) %>
+          <% end %>
+          </td>
+        <td>
+          <% if @book.user == current_user %>
+           <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"=> "本当に消しますか？" %>
+          <% end %>
+          </td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+  </div>
+
+</div>
+</div>
+  
+</body>
